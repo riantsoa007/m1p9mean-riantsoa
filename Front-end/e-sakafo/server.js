@@ -3,14 +3,20 @@ const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken')
 const MongoClient = require('mongodb').MongoClient
 const bcrypt = require('bcrypt')
+const path = require('path');
 const app = express()
 
+app.use(express.static(__dirname + '/dist/<name-of-app>'));
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname +
+    '/dist/<nom-app>/index.html'));
+});
 // ========================
 // Link to Database
 // ========================
 // Updates environment variables
 // @see https://zellwk.com/blog/environment-variables/
-require('./dotenv')
+require('./back-end/dotenv')
 
 // Replace process.env.DB_URL with your actual connection string
 const connectionString = process.env.DB_URL

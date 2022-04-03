@@ -8,7 +8,7 @@ const dotenv = require('dotenv')
  * @see https://www.npmjs.com/package/dotenv
  * @param {String} pathToConfig
  */
-function updateEnv (pathToConfig) {
+function updateEnv(pathToConfig) {
   const envConfig = dotenv.parse(fs.readFileSync(pathToConfig))
   for (const k in envConfig) {
     process.env[k] = envConfig[k]
@@ -16,4 +16,4 @@ function updateEnv (pathToConfig) {
 }
 
 // Update Environment variables
-updateEnv('./secrets/variables.env')
+updateEnv('./back-end/secrets/variables.env')

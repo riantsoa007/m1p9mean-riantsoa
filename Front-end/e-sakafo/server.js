@@ -6,11 +6,11 @@ const bcrypt = require('bcrypt')
 const path = require('path');
 const app = express()
 
-app.use(express.static(__dirname + '/dist/e-sakafo'));
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname +
-    '/src/index.html'));
-});
+app.use(express.static('./dist/e-sakafo'));
+
+app.get('/*', (req, res) =>
+  res.sendFile('index.html', { root: 'dist/e-sakafo/' }),
+);
 // ========================
 // Link to Database
 // ========================
@@ -111,6 +111,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     // ========================
     const isProduction = process.env.NODE_ENV === 'production'
     const port = isProduction ? 7500 : 3000
-    app.listen(process.env.PORT || 8080);
+    app.listen(port, function () {
+      console.log(`listening on ${port}`)
+    })
   })
   .catch(console.error)

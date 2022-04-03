@@ -6,10 +6,10 @@ const bcrypt = require('bcrypt')
 const path = require('path');
 const app = express()
 
-app.use(express.static(__dirname + '/dist/<name-of-app>'));
+app.use(express.static(__dirname + '/dist/e-sakafo'));
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname +
-    '/dist/<nom-app>/index.html'));
+    '/dist/e-sakafo/index.html'));
 });
 // ========================
 // Link to Database

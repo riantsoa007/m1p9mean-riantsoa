@@ -17,3 +17,4 @@ function updateEnv(pathToConfig) {
 
 // Update Environment variables
 updateEnv('./back-end/secrets/variables.env')
+

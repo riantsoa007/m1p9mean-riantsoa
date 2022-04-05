@@ -5,6 +5,7 @@ const { default: mongoose } = require('mongoose');
 const userRoutes = require("./routes/UserRoute");
 const bodyParser = require('body-parser')
 const path = require('path')
+
 const app = express()
 //requirements
 require('./dotenv')
@@ -37,10 +38,11 @@ mongoose.connect(connectionString)
         console.log(error);
     });
 
-// app.use(express.static('./dist/e-sakafo'));
-// app.get('/*', (req, res) =>
-//     res.sendFile('index.html', { root: 'dist/e-sakafo/' }),
-// );
+app.use(express.static('./dist/e-sakafo'));
+
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', { root: 'dist/e-sakafo/' }),
+);
 // app.use(express.static('./dist/e-sakafo'));
 
 // app.get('/*', (req, res) =>

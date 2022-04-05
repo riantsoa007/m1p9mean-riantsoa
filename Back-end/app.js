@@ -38,7 +38,10 @@ mongoose.connect(connectionString)
         console.log(error);
     });
 
-
+// app.use(express.static(__dirname + '/dist/<app-name>'));
+// app.get('/*', function(req,res) {
+// res.sendFile(path.join(__dirname+
+// '/dist/<app-name>/index.html'));});
 app.use(express.static('./dist/e-sakafo'));
 
 app.get('/*', (req, res) =>

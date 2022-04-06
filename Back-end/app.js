@@ -11,7 +11,7 @@ const app = express()
 require('./dotenv')
 //Gestion Cors
 app.use(cors({
-    origin: "http://localhost:3000/"
+    origin: "http://localhost:8080/"
 }));
 app.use(express.static(__dirname + "/web"));
 app.use((req, res, next) => {
@@ -38,16 +38,16 @@ mongoose.connect(connectionString)
         console.log(error);
     });
 
-app.use(express.static(__dirname + '/dist/e-sakafo'));
+// app.use(express.static(__dirname));
 
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname + '/dist/e-sakafo/index.html'));
-});
-// app.use(express.static('./dist/e-sakafo'));
+// app.get('/*', function (req, res) {
+//     res.sendFile(path.join(__dirname + '..//e-sakafo/index.html'));
+// });
+app.use(express.static('./dist/e-sakafo'));
 
-// app.get('/*', (req, res) =>
-//     res.sendFile('index.html', { root: 'dist/e-sakafo' }),
-// );
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', { root: 'dist/e-sakafo' }),
+);
 app.use((req, res, next) => {
     const error = new Error("Not found");
     error.status = 404;

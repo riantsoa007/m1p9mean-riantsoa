@@ -1,4 +1,10 @@
+//VARIABLE
+const DB_URL = "mongodb+srv://admin:root@cluster0.rf865.mongodb.net/e-kaly?retryWrites=true&w=majority"
 
+const NODE_ENV = "production"
+
+const SECRET_KEY = "esakafo"
+/////
 const express = require('express')
 let cors = require('cors');
 const { default: mongoose } = require('mongoose');
@@ -8,7 +14,7 @@ const path = require('path')
 
 const app = express()
 //requirements
-require('./dotenv')
+//require('./dotenv')
 //Gestion Cors
 app.use(cors({
     origin: "http://localhost:8080/"
@@ -29,7 +35,7 @@ app.use(express.static('public'))
 
 app.use("/api/user", userRoutes);
 //conection mangoDB
-const connectionString = process.env.DB_URL
+const connectionString = DB_URL
 
 mongoose.connect(connectionString)
     .then(() => {

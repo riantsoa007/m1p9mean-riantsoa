@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const environment = {\n  production: true,\n  title: 'Production Environment Heading',\n  apiURL: 'https://e-sakafo-m1-riantsoa.herokuapp.com/api/'\n};","map":null,"metadata":{},"sourceType":"module"}

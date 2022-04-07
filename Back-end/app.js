@@ -8,7 +8,6 @@ const SECRET_KEY = "esakafo"
 const URL_DEV = "http://localhost:4200"
 
 const URL_PROD = "https://e-sakafo-m1-riantsoa.herokuapp.com/api"
-
 /////
 
 const express = require('express')
@@ -23,7 +22,7 @@ const app = express()
 //require('./dotenv')
 //Gestion Cors
 app.use(cors({
-    origin: URL_DEV
+    origin: URL_PROD
 }));
 app.use(express.static(__dirname + "/web"));
 app.use((req, res, next) => {

@@ -17,6 +17,9 @@ export class LoginServiceService {
   logout() {
     localStorage.removeItem("token");
   }
+  findUser(id:any) {
+    return this.http.get(environment.apiURL + 'user/find/'+id,{withCredentials:true});
+  }
  
  inscription(input: any) {
    if(input.password != input.confirmPassword){

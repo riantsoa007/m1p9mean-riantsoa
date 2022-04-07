@@ -29,7 +29,7 @@ exports.user_signup = (req, res, next) => {
                             nom: req.body.nom,
                             prenom: req.body.prenom,
                             role: req.body.role,
-                            restaurant_id :req.body.restaurant_id
+                            restaurant_id : req.body.restaurant_id
                         });
                         user
                             .save()
@@ -115,8 +115,23 @@ exports.user_delete = (req, res, next) => {
             });
         });
 };
+exports.findUser = (req, res) => {
+   
+    User.findById(req.params.userId)
+        .exec()
+        .then(result => {
+            res.status(200).json({
+              data : result
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err
+            });
+        });
+    
+};
 exports.user = function(req, res, next) {
-  
     if (req.userData) {
       res.send(req.userData);
       next();
@@ -125,7 +140,7 @@ exports.user = function(req, res, next) {
      return res.status(401).json({ message: 'Invalid token' });
     }
   };
-  exports.findall =  (req, res, next) => {
+exports.findall =  (req, res, next) => {
     User.find({})
         .exec()
         .then(result => {

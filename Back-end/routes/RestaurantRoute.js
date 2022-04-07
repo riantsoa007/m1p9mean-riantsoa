@@ -7,6 +7,8 @@ const roleAuth =  require('../middleware/check-role');
 const RestaurantController = require('../controllers/RestaurantController');
 
 router.get("/find",checkAuth,roleAuth.isResponsable, RestaurantController.findAllRestaurant);
+//router.get("/find/:id",checkAuth,roleAuth.isRestaurant, RestaurantController.findRestaurant);
+router.get("/find/:id",checkAuth,roleAuth.isRestaurant, RestaurantController.findRestaurant);
 router.post("/create",checkAuth,roleAuth.isResponsable, RestaurantController.create);
 
 module.exports = router;

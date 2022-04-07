@@ -28,8 +28,8 @@ app.use((req, res, next) => {
     next();
 });
 app.use(cors({
-     origin: URL_DEV
-   // origin: URL_PROD 
+   //  origin: URL_DEV
+    origin: URL_PROD 
 }));
 //requirements
 //require('./dotenv')

@@ -18,13 +18,7 @@ export class RoleService {
     );
   }
   profile(){
-    let rep :any;
-    this.http.get(environment.apiURL + 'user/profile',{withCredentials:true}).subscribe(
-      ((res)=>{
-        rep = res;
-         console.log(rep);
-      })
-    );
-    return rep.asObservable();
+   
+    return this.http.get(environment.apiURL + 'user/profile',{withCredentials:true});    
   }
 }

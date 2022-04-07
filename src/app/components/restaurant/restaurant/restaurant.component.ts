@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoleService } from 'src/app/services/role.service';
 
 @Component({
   selector: 'app-restaurant',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./restaurant.component.css']
 })
 export class RestaurantComponent implements OnInit {
-
-  constructor() { }
+  user :any;
+  constructor(private roleServ:RoleService) { }
 
   ngOnInit(): void {
+    
   }
 
 }

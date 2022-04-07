@@ -24,6 +24,22 @@ exports.create = (req, res, next) => {
                 });
             });
 };
+exports.findRestaurant = (req, res) => {
+    Restaurant.findById(req.params.userId)
+        .exec()
+        .then(result => {
+            res.status(200).json({
+              data : result
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    
+};
 exports.findAllRestaurant = (req, res, next) => {
     Restaurant.find({})
         .exec()

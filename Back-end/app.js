@@ -4,7 +4,13 @@ const DB_URL = "mongodb+srv://admin:root@cluster0.rf865.mongodb.net/e-kaly?retry
 const NODE_ENV = "production"
 
 const SECRET_KEY = "esakafo"
+
+const URL_DEV = "http://localhost:4200"
+
+const URL_PROD = "https://e-sakafo-m1-riantsoa.herokuapp.com/api"
+
 /////
+
 const express = require('express')
 let cors = require('cors');
 const { default: mongoose } = require('mongoose');
@@ -17,7 +23,7 @@ const app = express()
 //require('./dotenv')
 //Gestion Cors
 app.use(cors({
-    origin: "http://localhost:8080/"
+    origin: URL_DEV
 }));
 app.use(express.static(__dirname + "/web"));
 app.use((req, res, next) => {
@@ -43,6 +49,7 @@ mongoose.connect(connectionString)
     }).catch((error) => {
         console.log(error);
     });
+
 
 // app.use(express.static(__dirname));
 

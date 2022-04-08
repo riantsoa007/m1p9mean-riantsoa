@@ -74,12 +74,14 @@ exports.user_login = (req, res, next) => {
                         },
                         JWT_KEY,
                         {
-                            expiresIn: "1h"
+                            expiresIn: "3h"
                         }
                     );
+            
                     return res.status(200).json({
                         message: "Authentification success",
-                        token: token
+                        token: token,
+                        expiresIn: "3h"
                     });
                 }
                 res.status(401).json({
@@ -110,3 +112,13 @@ exports.user_delete = (req, res, next) => {
             });
         });
 };
+exports.user = function(req, res, next) {
+  
+    if (req.userData) {
+      res.send(req.userData);
+      next();
+    } 
+    else {
+     return res.status(401).json({ message: 'Invalid token' });
+    }
+  };

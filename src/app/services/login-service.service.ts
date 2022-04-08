@@ -12,9 +12,12 @@ export class LoginServiceService {
   constructor(private http: HttpClient,private router:Router) { }
 
   seConnecter(input: any) {
-    return this.http.post(environment.apiURL + 'login', input);
+    return this.http.post(environment.apiURL + 'user/login', input, {withCredentials:true} );
   }
-
+  logout() {
+    localStorage.removeItem("token");
+  }
+ 
  inscription(input: any) {
    if(input.password != input.confirmPassword){
     throw new Error( "Les mots de passe ne correspondent pas !");

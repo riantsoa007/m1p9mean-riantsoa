@@ -11,26 +11,32 @@ const URL_PROD = "https://e-sakafo-m1-riantsoa.herokuapp.com/api"
 /////
 
 const express = require('express')
-let cors = require('cors');
 const { default: mongoose } = require('mongoose');
+const app = express()
+
+let cors = require('cors');
+
 const userRoutes = require("./routes/UserRoute");
 const bodyParser = require('body-parser')
 const path = require('path')
 
-const app = express()
-//requirements
-//require('./dotenv')
-//Gestion Cors
-app.use(cors({
-    origin: URL_PROD
-}));
-app.use(express.static(__dirname + "/web"));
 app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
+app.use(cors({
+    // origin: URL_DEV
+    origin: URL_PROD 
+}));
+//requirements
+//require('./dotenv')
+//Gestion Cors
+
+app.use(express.static(__dirname + "/web"));
+
 //middleware
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }))

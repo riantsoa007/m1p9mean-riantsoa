@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 exports.user_signup = (req, res, next) => {
-    User.find({ email: req.body.email })
+    User.find({email: req.body.email})
         .exec()
         .then(user => {
             if (user.length >= 1) {
@@ -29,6 +29,7 @@ exports.user_signup = (req, res, next) => {
                             nom: req.body.nom,
                             prenom: req.body.prenom,
                             role: req.body.role,
+                            restaurant_id :req.body.restaurant_id
                         });
                         user
                             .save()
@@ -56,21 +57,23 @@ exports.user_login = (req, res, next) => {
         .then(user => {
             if (user.length < 1) {
                 return res.status(401).json({
-                    message: "Auth failed"
+                    message: "Mot de passe ou Email invalide"
                 });
             }
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (err) {
                     return res.status(401).json({
-                        message: "Auth failed"
+                        message:  "Mot de passe  invalide"
                     });
                 }
                 if (result) {
+
                     const token = jwt.sign(
                         {
                             email: user[0].email,
                             userId: user[0]._id,
-                            role: user[0].role
+                            role: user[0].role,
+                            restaurant :  user[0].restaurant_id
                         },
                         JWT_KEY,
                         {
@@ -85,7 +88,7 @@ exports.user_login = (req, res, next) => {
                     });
                 }
                 res.status(401).json({
-                    message: "Auth failed"
+                    message:  "Mot de passe ou email invalide"
                 });
             });
         })
@@ -122,3 +125,19 @@ exports.user = function(req, res, next) {
      return res.status(401).json({ message: 'Invalid token' });
     }
   };
+  exports.findall =  (req, res, next) => {
+    User.find({})
+        .exec()
+        .then(result => {
+            res.status(200).json({
+              data : result
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    
+};

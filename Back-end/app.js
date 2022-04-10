@@ -15,7 +15,7 @@ const { default: mongoose } = require('mongoose');
 const app = express()
 
 let cors = require('cors');
-
+const restaurantRoutes = require("./routes/RestaurantRoute");
 const userRoutes = require("./routes/UserRoute");
 const bodyParser = require('body-parser')
 const path = require('path')
@@ -28,8 +28,8 @@ app.use((req, res, next) => {
     next();
 });
 app.use(cors({
-    // origin: URL_DEV
-    origin: URL_PROD 
+     origin: URL_DEV
+   // origin: URL_PROD 
 }));
 //requirements
 //require('./dotenv')
@@ -45,6 +45,7 @@ app.use(express.static('public'))
 // Routes
 
 app.use("/api/user", userRoutes);
+app.use("/api/restaurant", restaurantRoutes);
 //conection mangoDB
 const connectionString = DB_URL
 

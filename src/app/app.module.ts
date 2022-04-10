@@ -9,6 +9,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthInterceptor } from './interceptors/AuthInterceptor';
 import { RoleService } from './services/role.service';
 import { LivreurComponent } from './components/livreur/livreur.component';
+import { DashboardComponent } from './components/restaurant/dashboard/dashboard.component';
+import { RestaurantComponent } from './components/restaurant/restaurant/restaurant.component';
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import { LivreurComponent } from './components/livreur/livreur.component';
     LoginComponent,
     RegisterComponent,
     LivreurComponent,
+    DashboardComponent,
+    RestaurantComponent,
   ],
   imports: [
     BrowserModule,

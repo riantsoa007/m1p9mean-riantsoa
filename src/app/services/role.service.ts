@@ -13,9 +13,18 @@ export class RoleService {
   redirect():void{
     this.http.get(environment.apiURL + 'user/profile',{withCredentials:true}).subscribe(
       ((res:any)=>{
-     
           this.router.navigate(['/'+res.role]);
       })
     );
+  }
+  profile(){
+    let rep :any;
+    this.http.get(environment.apiURL + 'user/profile',{withCredentials:true}).subscribe(
+      ((res)=>{
+        rep = res;
+         console.log(rep);
+      })
+    );
+    return rep.asObservable();
   }
 }
